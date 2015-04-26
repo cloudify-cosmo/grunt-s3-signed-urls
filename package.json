@@ -1,0 +1,30 @@
+{
+  "name": "grunt-s3-signed-urls",
+  "version": "0.0.1",
+  "description": "Generate s3 signed urls",
+  "repository": "https://github.com/guy-mograbi-at-gigaspaces/grunt-s3-signed-urls",
+  "author": {
+    "name": "Guy Mograbi",
+    "email": "guym@gigaspaces.com",
+    "url": ""
+  },
+  "keywords": [
+    "gruntplugin"
+  ],
+  "main": "Gruntfile.js",
+  "engines": {
+    "node": "0.10.0"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-jshint": "~0.8.0",
+    "grunt-contrib-nodeunit": "~0.3.0",
+    "grunt": "~0.4.2",
+    "jshint-stylish": "~0.1.5",
+    "load-grunt-tasks": "~0.3.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  }
+}
