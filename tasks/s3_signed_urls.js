@@ -8,28 +8,12 @@
 
 'use strict';
 
-/*var AWS = require('aws-sdk');
+var AWS = require('aws-sdk');
+var init = require('../Conf');
 
-// loading the config file
-  var conf = AWS.config.loadFromPath('../dev/config.json');
-  var _accessKeyId = conf.credentials.accessKeyId;
-var _secretAccessKey = conf.credentials.secretAccessKey;
+var bucketName = init.bucket_name;
+var expire = init.expire;
 
-      var creds = new AWS.Credentials({
-   accessKeyId: _accessKeyId, secretAccessKey: _secretAccessKey//,sessionToken: 'session'
- });
-
- var bucketName = 'liron-by-nodejs';
- var expire = 120;
- var paramsForUrl = {Bucket: bucketName, Key: key, Expires: expire};
- var s3 = new AWS.S3({credentials:creds});
-
- var signedURLS3 = function(){
- var url = s3.getSignedUrl('getObject', paramsForUrl);
- console.log('The URL is', url);
- };
-
-signedURLS3();*/
 module.exports = function (grunt) {
   // Please see the Grunt documentation for more information regarding task
   // creation: http://gruntjs.com/creating-tasks
@@ -67,9 +51,20 @@ module.exports = function (grunt) {
       grunt.log.writeln('File "' + file.dest + '" created.');
     });
 
-      // run grunt and get --> Warning: ENOENT, no such file or directory '../dev/config.json' Use --force to continue.
-      var AWS = require('aws-sdk');
-      var conf = AWS.config.loadFromPath('../dev/config.json');
+    // loading the config file, cannot do so with 'init'! do not use 'init.json' for that cause.
+      var conf = AWS.config.loadFromPath('./conf/dev/aws.json');
+      var _accessKeyId = conf.credentials.accessKeyId;
+      var _secretAccessKey = conf.credentials.secretAccessKey;
+
+      var creds = new AWS.Credentials({
+          accessKeyId: _accessKeyId, secretAccessKey: _secretAccessKey//,sessionToken: 'session'
+      });
+
+      var params = {Bucket: bucketName, Key: 'key', Expires: expire};
+      var s3 = new AWS.S3({credentials:creds});
+      var url = s3.getSignedUrl('getObject', params);
+      console.log(url);
+
 
 
   });
