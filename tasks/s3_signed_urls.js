@@ -60,7 +60,8 @@ module.exports = function (grunt) {
           accessKeyId: _accessKeyId, secretAccessKey: _secretAccessKey//,sessionToken: 'session'
       });
 
-      var params = {Bucket: bucketName, Key: 'key', Expires: expire};
+      // do not change the Key value from '' !!
+      var params = {Bucket: bucketName, Key: '', Expires: expire};
       var s3 = new AWS.S3({credentials:creds});
       var url = s3.getSignedUrl('getObject', params);
       console.log(url);
