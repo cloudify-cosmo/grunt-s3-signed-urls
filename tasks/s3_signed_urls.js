@@ -1,6 +1,6 @@
 /*
  * grunt-s3-signed-urls
- * 
+ *
  *
  * Copyright (c) 2015 Guy Mograbi
  * Licensed under the MIT license.
@@ -8,8 +8,13 @@
 
 'use strict';
 
-module.exports = function (grunt) {
+var AWS = require('aws-sdk');
+var init = require('../Conf');
 
+var bucketName = init.bucket_name;
+var expire = init.expire;
+
+module.exports = function (grunt) {
   // Please see the Grunt documentation for more information regarding task
   // creation: http://gruntjs.com/creating-tasks
 
@@ -20,7 +25,6 @@ module.exports = function (grunt) {
       punctuation: '.',
       separator: ', '
     });
-
     // Iterate over all specified file groups.
     this.files.forEach(function (file) {
       // Concat specified files.
@@ -46,6 +50,23 @@ module.exports = function (grunt) {
       // Print a success message.
       grunt.log.writeln('File "' + file.dest + '" created.');
     });
+
+    // loading the config file, cannot do so with 'init'! do not use 'init.json' for that cause.
+      var conf = AWS.config.loadFromPath('./conf/dev/aws.json');
+      var _accessKeyId = conf.credentials.accessKeyId;
+      var _secretAccessKey = conf.credentials.secretAccessKey;
+
+      var creds = new AWS.Credentials({
+          accessKeyId: _accessKeyId, secretAccessKey: _secretAccessKey//,sessionToken: 'session'
+      });
+
+      var params = {Bucket: bucketName, Key: 'key', Expires: expire};
+      var s3 = new AWS.S3({credentials:creds});
+      var url = s3.getSignedUrl('getObject', params);
+      console.log(url);
+
+
+
   });
 
 };
