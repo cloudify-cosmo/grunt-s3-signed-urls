@@ -51,16 +51,15 @@ module.exports = function (grunt) {
       grunt.log.writeln('File "' + file.dest + '" created.');
     });
 
-    // loading the config file, cannot do so with 'init'! do not use 'init.json' for that cause.
-      var conf = AWS.config.loadFromPath('./conf/dev/aws.json');
-      var _accessKeyId = conf.credentials.accessKeyId;
-      var _secretAccessKey = conf.credentials.secretAccessKey;
+      var accessKeyId = init.accessKeyId;
+      var secretAccessKey = init.secretAccessKey;
 
       var creds = new AWS.Credentials({
-          accessKeyId: _accessKeyId, secretAccessKey: _secretAccessKey//,sessionToken: 'session'
+          accessKeyId: accessKeyId, secretAccessKey: secretAccessKey//,sessionToken: 'session'
       });
 
-      var params = {Bucket: bucketName, Key: 'key', Expires: expire};
+      // do not change the Key value from '' !!
+      var params = {Bucket: bucketName, Key: '', Expires: expire};
       var s3 = new AWS.S3({credentials:creds});
       var url = s3.getSignedUrl('getObject', params);
       console.log(url);
