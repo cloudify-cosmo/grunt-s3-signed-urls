@@ -51,13 +51,11 @@ module.exports = function (grunt) {
       grunt.log.writeln('File "' + file.dest + '" created.');
     });
 
-    // loading the config file, cannot do so with 'init'! do not use 'init.json' for that cause.
-      var conf = AWS.config.loadFromPath('./conf/dev/aws.json');
-      var _accessKeyId = conf.credentials.accessKeyId;
-      var _secretAccessKey = conf.credentials.secretAccessKey;
+      var accessKeyId = init.accessKeyId;
+      var secretAccessKey = init.secretAccessKey;
 
       var creds = new AWS.Credentials({
-          accessKeyId: _accessKeyId, secretAccessKey: _secretAccessKey//,sessionToken: 'session'
+          accessKeyId: accessKeyId, secretAccessKey: secretAccessKey//,sessionToken: 'session'
       });
 
       // do not change the Key value from '' !!
