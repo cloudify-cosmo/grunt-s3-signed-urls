@@ -29,6 +29,7 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "lodash": "^3.7.0"
+    "lodash": "^3.7.0",
+    "aws-sdk": "~2.1.26"
   }
 }

@@ -2,6 +2,14 @@
 
 > Generate s3 signed urls
 
+This plugin will generate temporary signed URLs for you to use 
+```
+{
+    "object_key_1": "https://bucket_name.s3.amazonaws.com/object_key_1?AWSAccessKeyId=your_key&Expires=timestamp&Signature=random_signature",
+    "object_key_2": "https://bucket_name.s3.amazonaws.com/object_key_2?AWSAccessKeyId=your_key&Expires=timestamp&Signature=random_signature"
+}
+```
+
 ## Getting Started
 This plugin requires Grunt.
 
@@ -37,56 +45,56 @@ grunt.initConfig({
 
 ### Options
 
-#### options.separator
+#### options.bucketName
 Type: `String`
-Default value: `',  '`
+Default value: `''`
 
-A string value that is used to do something with whatever.
+Name of s3 bucket
 
-#### options.punctuation
+#### options.expire
+Type: `Number`
+Default value: `60*60*24`
+
+seconds until link will expire
+
+#### options.secretAccessKey
 Type: `String`
-Default value: `'.'`
+Default value: `null`
 
-A string value that is used to do something else with whatever else.
+AWS secret access key
+
+#### options.accessKeyId
+Type: `String`
+Default value: `null`
+
+AWS access key ID
+
+#### options.objectKey
+Type: `String|Array<String>`
+Default value:`''`
+
+Object key or list object keys to get links for
 
 ### Usage Examples
 
-#### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
-
-```js
-grunt.initConfig({
-  s3_signed_urls: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-})
 ```
-
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
-
-```js
-grunt.initConfig({
-  s3_signed_urls: {
+s3_signed_urls: {
     options: {
-      separator: ': ',
-      punctuation: ' !!!',
+       bucketName : '<%=s3Details.bucketName %>',
+       expire : '<%=s3Details.expire %>',
+       secretAccessKey : '<%=s3Details.secretAccessKey %>',
+       accessKeyId : '<%=s3Details.accessKeyId %>',
+       objectKey : '<%=s3Details.objectKey %>'
     },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-})
+    all : {}
+},
 ```
 
 ## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
+Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
-_(Nothing yet)_
+0.0.1 first release
 
 ## License
 Copyright (c) 2015 Guy Mograbi. Licensed under the MIT license.
