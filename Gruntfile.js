@@ -35,7 +35,7 @@ module.exports = function (grunt) {
         s3_signed_urls: {
             options: {
                bucketName : '<%=s3Details.bucketName %>',
-               expire : '<%=s3Details.expire %>',
+               expires : '<%=s3Details.expire %>', // 1 year
                secretAccessKey : '<%=s3Details.secretAccessKey %>',
                accessKeyId : '<%=s3Details.accessKeyId %>',
                objectKey : '<%=s3Details.objectKey %>'

@@ -21,7 +21,7 @@ module.exports = function (grunt) {
         // Merge task-specific and/or target-specific options with these defaults.
         var options = this.options({
             bucketName: '',
-            expire: 60 * 60 * 24, // 1 day by default. time in seconds,
+            expires: 60 * 60 * 24, // 1 day by default. time in seconds,
             secretAccessKey: null,
             accessKeyId : null,
             objectKey: '' // path to file inside bucket

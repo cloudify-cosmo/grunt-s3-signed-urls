@@ -11,6 +11,9 @@
   "keywords": [
     "gruntplugin"
   ],
+    "files": [
+        "tasks"
+    ],
   "main": "Gruntfile.js",
   "engines": {
     "node": "0.10.0"
