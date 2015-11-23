@@ -8,11 +8,15 @@
     "email": "guym@gigaspaces.com",
     "url": ""
   },
+    "bin" : {
+        "s3-sign" : "./src/sign_urls.js"
+    },
   "keywords": [
     "gruntplugin"
   ],
     "files": [
-        "tasks"
+        "tasks",
+        "src"
     ],
   "main": "Gruntfile.js",
   "engines": {

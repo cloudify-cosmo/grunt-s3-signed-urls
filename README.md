@@ -90,6 +90,25 @@ s3_signed_urls: {
 },
 ```
 
+
+## Command line support
+
+```
+
+sudo npm install guy-mograbi-at-gigaspaces/grunt-s3-signed-urls
+
+export SIGN_BUCKET_NAME="..."
+export SIGN_TIMEOUT="..." # time in seconds. 1 day by default. 
+export SIGN_ACCESS_KEY="..."
+export SIGN_SECRET_KEY="..."
+export SIGN_OBJECT_KEY="..." # path to file inside bucket
+
+
+s3-sign
+
+==> https://pathToKeyStuff?AWSAccessKeyId=accessKeyId&Expires=someLongNumberTimestamp&Signature=someSignature
+```
+
 ## Contributing
 Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
